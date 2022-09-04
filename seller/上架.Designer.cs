@@ -44,6 +44,7 @@ namespace seller
             this.label10 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btn_statis = new System.Windows.Forms.Button();
             this.picb_format = new System.Windows.Forms.PictureBox();
             this.btn_remove = new System.Windows.Forms.Button();
             this.btn_open_formatpic = new System.Windows.Forms.Button();
@@ -76,8 +77,9 @@ namespace seller
             this.color = new System.Windows.Forms.Label();
             this.richTextBox_descript = new System.Windows.Forms.RichTextBox();
             this.txt_pdname = new System.Windows.Forms.TextBox();
-            this.btn_statis = new System.Windows.Forms.Button();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -89,7 +91,9 @@ namespace seller
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picb_format)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picb_product)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.SuspendLayout();
             // 
             // ofd_product
@@ -112,8 +116,8 @@ namespace seller
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1723, 918);
-            this.splitContainer1.SplitterDistance = 125;
+            this.splitContainer1.Size = new System.Drawing.Size(1852, 1055);
+            this.splitContainer1.SplitterDistance = 143;
             this.splitContainer1.TabIndex = 0;
             // 
             // btn_search
@@ -146,7 +150,8 @@ namespace seller
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.chart1);
+            this.splitContainer2.Panel1.Controls.Add(this.dataGridView3);
+            this.splitContainer2.Panel1.Controls.Add(this.dataGridView2);
             this.splitContainer2.Panel1.Controls.Add(this.flowLayoutPanel2);
             this.splitContainer2.Panel1.Controls.Add(this.flowLayoutPanel1);
             this.splitContainer2.Panel1.Controls.Add(this.label11);
@@ -157,6 +162,7 @@ namespace seller
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.Controls.Add(this.chart1);
             this.splitContainer2.Panel2.Controls.Add(this.btn_statis);
             this.splitContainer2.Panel2.Controls.Add(this.picb_format);
             this.splitContainer2.Panel2.Controls.Add(this.btn_remove);
@@ -190,8 +196,8 @@ namespace seller
             this.splitContainer2.Panel2.Controls.Add(this.color);
             this.splitContainer2.Panel2.Controls.Add(this.richTextBox_descript);
             this.splitContainer2.Panel2.Controls.Add(this.txt_pdname);
-            this.splitContainer2.Size = new System.Drawing.Size(1723, 789);
-            this.splitContainer2.SplitterDistance = 580;
+            this.splitContainer2.Size = new System.Drawing.Size(1852, 908);
+            this.splitContainer2.SplitterDistance = 623;
             this.splitContainer2.TabIndex = 0;
             // 
             // flowLayoutPanel2
@@ -199,25 +205,25 @@ namespace seller
             this.flowLayoutPanel2.AllowDrop = true;
             this.flowLayoutPanel2.AutoScroll = true;
             this.flowLayoutPanel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(14, 462);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(18, 772);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(556, 143);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(544, 113);
             this.flowLayoutPanel2.TabIndex = 56;
             // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(14, 230);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(18, 433);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(554, 172);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(559, 114);
             this.flowLayoutPanel1.TabIndex = 55;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("標楷體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label11.Location = new System.Drawing.Point(18, 422);
+            this.label11.Location = new System.Drawing.Point(12, 568);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(268, 30);
             this.label11.TabIndex = 53;
@@ -227,7 +233,7 @@ namespace seller
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("標楷體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label10.Location = new System.Drawing.Point(18, 197);
+            this.label10.Location = new System.Drawing.Point(18, 212);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(268, 30);
             this.label10.TabIndex = 51;
@@ -254,6 +260,17 @@ namespace seller
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(527, 92);
             this.dataGridView1.TabIndex = 48;
+            this.dataGridView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseClick);
+            // 
+            // btn_statis
+            // 
+            this.btn_statis.Location = new System.Drawing.Point(538, 786);
+            this.btn_statis.Name = "btn_statis";
+            this.btn_statis.Size = new System.Drawing.Size(154, 60);
+            this.btn_statis.TabIndex = 86;
+            this.btn_statis.Text = "統計";
+            this.btn_statis.UseVisualStyleBackColor = true;
+            this.btn_statis.Click += new System.EventHandler(this.button1_Click);
             // 
             // picb_format
             // 
@@ -351,7 +368,7 @@ namespace seller
             // alter
             // 
             this.alter.BackColor = System.Drawing.Color.LightSalmon;
-            this.alter.Location = new System.Drawing.Point(327, 704);
+            this.alter.Location = new System.Drawing.Point(341, 556);
             this.alter.Margin = new System.Windows.Forms.Padding(4);
             this.alter.Name = "alter";
             this.alter.Size = new System.Drawing.Size(100, 29);
@@ -363,7 +380,7 @@ namespace seller
             // dele
             // 
             this.dele.BackColor = System.Drawing.Color.LightSalmon;
-            this.dele.Location = new System.Drawing.Point(166, 704);
+            this.dele.Location = new System.Drawing.Point(180, 556);
             this.dele.Margin = new System.Windows.Forms.Padding(4);
             this.dele.Name = "dele";
             this.dele.Size = new System.Drawing.Size(100, 29);
@@ -375,7 +392,7 @@ namespace seller
             // refresh
             // 
             this.refresh.BackColor = System.Drawing.Color.LightSalmon;
-            this.refresh.Location = new System.Drawing.Point(19, 704);
+            this.refresh.Location = new System.Drawing.Point(33, 556);
             this.refresh.Margin = new System.Windows.Forms.Padding(4);
             this.refresh.Name = "refresh";
             this.refresh.Size = new System.Drawing.Size(100, 29);
@@ -597,15 +614,15 @@ namespace seller
             this.txt_pdname.Size = new System.Drawing.Size(284, 49);
             this.txt_pdname.TabIndex = 47;
             // 
-            // btn_statis
+            // dataGridView2
             // 
-            this.btn_statis.Location = new System.Drawing.Point(48, 567);
-            this.btn_statis.Name = "btn_statis";
-            this.btn_statis.Size = new System.Drawing.Size(101, 38);
-            this.btn_statis.TabIndex = 86;
-            this.btn_statis.Text = "統計";
-            this.btn_statis.UseVisualStyleBackColor = true;
-            this.btn_statis.Click += new System.EventHandler(this.button1_Click);
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(23, 275);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowHeadersWidth = 51;
+            this.dataGridView2.RowTemplate.Height = 27;
+            this.dataGridView2.Size = new System.Drawing.Size(545, 131);
+            this.dataGridView2.TabIndex = 59;
             // 
             // chart1
             // 
@@ -613,22 +630,31 @@ namespace seller
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(67, 616);
+            this.chart1.Location = new System.Drawing.Point(99, 645);
             this.chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(300, 300);
-            this.chart1.TabIndex = 57;
+            this.chart1.Size = new System.Drawing.Size(379, 229);
+            this.chart1.TabIndex = 87;
             this.chart1.Text = "chart1";
-            this.chart1.Click += new System.EventHandler(this.chart1_Click);
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Location = new System.Drawing.Point(17, 616);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.RowHeadersWidth = 51;
+            this.dataGridView3.RowTemplate.Height = 27;
+            this.dataGridView3.Size = new System.Drawing.Size(545, 150);
+            this.dataGridView3.TabIndex = 60;
             // 
             // 上架
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1723, 918);
+            this.ClientSize = new System.Drawing.Size(1852, 1055);
             this.Controls.Add(this.splitContainer1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "上架";
@@ -648,7 +674,9 @@ namespace seller
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picb_format)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picb_product)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -698,6 +726,8 @@ namespace seller
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button btn_remove;
         private System.Windows.Forms.Button btn_statis;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }
 }

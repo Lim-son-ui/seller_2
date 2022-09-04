@@ -89,19 +89,25 @@ namespace seller
         }
         
         void renew() {
-            
+
+            var q = (from a in isp4.MemberAccounts
+                    where a.MemberAcc == account
+                    select a).ToList();
+
+            int memid = q[0].MemberID;
             var s = from d in isp4.Products
+                    where d.MemberID == memid
                     select d;
 
             dataGridView1.DataSource = s.ToList();
 
-            var t = from v in isp4.ProductDetails
-                    select v;
+            //var t = from v in isp4.ProductDetails
+            //        select v;
 
             //dataGridView2.DataSource = t.ToList();
 
-            var w = from p in isp4.ProductPics
-                    select p;
+            //var w = from p in isp4.ProductPics
+            //        select p;
 
            // dataGridView3.DataSource = w.ToList();
         }
@@ -174,6 +180,9 @@ namespace seller
             
             this.isp4.SaveChanges();
 
+
+            pd_detail.Clear();
+            pd_pic.Clear();
             renew();
         }
 
@@ -295,7 +304,8 @@ namespace seller
 
             this.isp4.SaveChanges();
 
-
+            pd_detail.Clear();
+            pd_pic.Clear();
             //-----------------------------------------------------------------------
 
 
@@ -398,6 +408,7 @@ namespace seller
 
         private void btn_show_pic_Click(object sender, EventArgs e)
         {
+            this.flowLayoutPanel2.Controls.Clear();
             for(int i = 0; i < pd_pic.Count(); i++)
             {
                 UserControl2 pict = new UserControl2();
@@ -428,7 +439,7 @@ namespace seller
         }
         #endregion
 
-        private void picb_product_MouseUp(object sender, MouseEventArgs e)
+        private void picb_product_MouseUp(object sender, MouseEventArgs e)      //想做圖片可以托拉進去
         {
             //foreach (Control items in Controls)
             //{
@@ -461,24 +472,93 @@ namespace seller
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)          //想做統計
         {
             var q = (from a in isp4.Products
-                     group a by a.SmallType into g
+                     group a by a.SmallTypeID into g
                      select new { small = g.Key, cont = g.Count() }).OrderByDescending(b => b.small);
 
-            chart1.DataSource = q.ToList();
             chart1.ChartAreas.Add("FirstChart");
-            chart1.Series.Add("小分類");
-            chart1.Series[0].XValueMember = "smalltype";
-            chart1.Series[0].YValueMembers = "MyCount";
-            chart1.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
-            chart1.Series[0].IsValueShownAsLabel = true;
+            chart1.Series.Add("Pie");
+
+            foreach (var j in q)
+            {
+                
+                chart1.Series[0].Points.AddXY(j.small, j.cont);
+                chart1.Series[0].IsValueShownAsLabel = true;
+                chart1.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            }
         }
 
         private void chart1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void dataGridView1_MouseClick(object sender, MouseEventArgs e)      //產生對應的可修改選項
+        {
+            int index = Convert.ToInt32(dataGridView1.CurrentRow.Cells["ProductID"].Value);
+
+            var q = from a in isp4.ProductDetails
+                    where a.ProductID == index
+                    select a;
+
+            dataGridView2.DataSource = q.ToList();
+
+            var viewpic = from a in isp4.ProductPics
+                          where a.ProductID == index
+                          select a;
+            dataGridView3.DataSource = viewpic.ToList();
+//-----------------------------------------------------------------------
+            var deta = (from a in isp4.Products
+                       where a.ProductID == index
+                       select a).ToList();
+            int smallid = deta[0].SmallTypeID;
+            int regionid = deta[0].RegionID;
+            
+            foreach(var details in deta)
+            {
+                txt_pdname.Text = details.ProductName;
+                txt_adfee.Text = details.AdFee.ToString();
+                richTextBox_descript.Text = details.Description;
+            }
+            var small = (from a in isp4.SmallTypes
+                        where a.SmallTypeID == smallid
+                        select a).ToList();
+
+            cmb_smtype.Text = small[0].SmallTypeName;
+
+            var region = (from a in isp4.RegionLists
+                         where a.RegionID == regionid
+                         select a).ToList();
+
+            cmb_region.Text = region[0].RegionName;
+            //---------------------------------------------------------------
+            byte[] data = null;
+
+            var pics = (from a in isp4.ProductPics
+                    where a.ProductID == index
+                    select a).ToList();
+
+            data = pics[0].picture;
+            
+            MemoryStream stream = new MemoryStream(data);
+            picb_product.Image = Image.FromStream(stream);
+            stream.Close();
+            //---------------------------------------------------------------
+
+            var detai = (from a in isp4.ProductDetails
+                        where a.ProductID == index
+                        select a).ToList();
+
+            txt_style.Text = detai[0].Style;
+            txt_quantity.Text = detai[0].Quantity.ToString();
+            txt_unitprice.Text = detai[0].UnitPrice.ToString();
+            data = detai[0].Pic;
+
+            MemoryStream stream_format = new MemoryStream(data);
+            picb_format.Image = Image.FromStream(stream_format);
+            stream.Close();
         }
     }
 }
