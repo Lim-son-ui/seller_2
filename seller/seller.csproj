@@ -1,0 +1,308 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1AB8C8D0-EAD1-4DAE-93E0-55354F03FBC1}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>seller</RootNamespace>
+    <AssemblyName>seller</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AD.cs">
+      <DependentUpon>ispanproj.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ArguePic.cs">
+      <DependentUpon>ispanproj.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Argument.cs">
+      <DependentUpon>ispanproj.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ArgumentType.cs">
+      <DependentUpon>ispanproj.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BigType.cs">
+      <DependentUpon>ispanproj.tt</DependentUpon>
+    </Compile>
+    <Compile Include="buyer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="buyer.Designer.cs">
+      <DependentUpon>buyer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Comment.cs">
+      <DependentUpon>ispanproj.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CommentPic.cs">
+      <DependentUpon>ispanproj.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CountryList.cs">
+      <DependentUpon>ispanproj.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Coupon.cs">
+      <DependentUpon>ispanproj.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FAQ.cs">
+      <DependentUpon>ispanproj.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FAQType.cs">
+      <DependentUpon>ispanproj.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Follow.cs">
+      <DependentUpon>ispanproj.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_main.Designer.cs">
+      <DependentUpon>Frm_main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ispanproj.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ispanproj.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ispanproj.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ispanproj.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ispanproj.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ispanproj.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Like.cs">
+      <DependentUpon>ispanproj.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MemberAccount.cs">
+      <DependentUpon>ispanproj.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OfficialCoupon.cs">
+      <DependentUpon>ispanproj.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Order.cs">
+      <DependentUpon>ispanproj.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderDetail.cs">
+      <DependentUpon>ispanproj.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderStatus.cs">
+      <DependentUpon>ispanproj.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Payment.cs">
+      <DependentUpon>ispanproj.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Product.cs">
+      <DependentUpon>ispanproj.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductDetail.cs">
+      <DependentUpon>ispanproj.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductPic.cs">
+      <DependentUpon>ispanproj.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RegionList.cs">
+      <DependentUpon>ispanproj.tt</DependentUpon>
+    </Compile>
+    <Compile Include="register.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="register.Designer.cs">
+      <DependentUpon>register.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shipper.cs">
+      <DependentUpon>ispanproj.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShippingStatus.cs">
+      <DependentUpon>ispanproj.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SmallType.cs">
+      <DependentUpon>ispanproj.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>ispanproj.tt</DependentUpon>
+    </Compile>
+    <Compile Include="test.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="test.Designer.cs">
+      <DependentUpon>test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl1.Designer.cs">
+      <DependentUpon>UserControl1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl2.Designer.cs">
+      <DependentUpon>UserControl2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_賣家總覽.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl_賣家總覽.Designer.cs">
+      <DependentUpon>UserControl_賣家總覽.cs</DependentUpon>
+    </Compile>
+    <Compile Include="上架.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="上架.Designer.cs">
+      <DependentUpon>上架.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LogIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogIn.Designer.cs">
+      <DependentUpon>LogIn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="修改.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="修改.Designer.cs">
+      <DependentUpon>修改.cs</DependentUpon>
+    </Compile>
+    <Compile Include="商品_總.cs" />
+    <Compile Include="商品圖.cs" />
+    <Compile Include="商品細項.cs" />
+    <Compile Include="賣家中心.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="賣家中心.Designer.cs">
+      <DependentUpon>賣家中心.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="buyer.resx">
+      <DependentUpon>buyer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_main.resx">
+      <DependentUpon>Frm_main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogIn.resx">
+      <DependentUpon>LogIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="register.resx">
+      <DependentUpon>register.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="test.resx">
+      <DependentUpon>test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl1.resx">
+      <DependentUpon>UserControl1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl2.resx">
+      <DependentUpon>UserControl2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl_賣家總覽.resx">
+      <DependentUpon>UserControl_賣家總覽.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="上架.resx">
+      <DependentUpon>上架.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="修改.resx">
+      <DependentUpon>修改.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="賣家中心.resx">
+      <DependentUpon>賣家中心.cs</DependentUpon>
+    </EmbeddedResource>
+    <EntityDeploy Include="ispanproj.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ispanproj.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ispanproj.edmx.diagram">
+      <DependentUpon>ispanproj.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ispanproj.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ispanproj.edmx</DependentUpon>
+      <LastGenOutput>ispanproj.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ispanproj.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ispanproj.edmx</DependentUpon>
+      <LastGenOutput>ispanproj.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
