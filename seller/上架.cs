@@ -281,11 +281,17 @@ namespace seller
 
 
             System.IO.MemoryStream ms = new System.IO.MemoryStream();
-            this.picb_format.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-            byte[] bytes = ms.GetBuffer();
+            if (ms.Length > 0)
+            {
+                this.picb_format.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                byte[] bytes = ms.GetBuffer();
 
-            pd_dtail.pic = bytes;
-
+                if (bytes != null)
+                {
+                    pd_dtail.pic = bytes;
+                }
+            }
+           
 
             pd_detail.Add(pd_dtail);
         }
@@ -298,7 +304,11 @@ namespace seller
                 detail.style = pd_detail[i].Style;
                 detail.quantity = pd_detail[i].Quantity;
                 detail.unitprice = pd_detail[i].UnitPrice;
-                detail.picture = pd_detail[i].pic;
+                if(pd_detail[i].pic != null)
+                {
+                    detail.picture = pd_detail[i].pic;
+                }
+                
                 foreach (Control control in detail.Controls)
                 {
                     if (control.GetType() == typeof(Button))
