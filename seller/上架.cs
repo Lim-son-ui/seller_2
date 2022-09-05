@@ -14,6 +14,9 @@ namespace seller
     public partial class 上架 : Form
     {
         public string account;
+        public int product_id;
+        iSpanProjectEntities6 isp4 = new iSpanProjectEntities6();
+
         public 上架()
         {
             InitializeComponent();
@@ -25,12 +28,11 @@ namespace seller
             account = acc;
         }
        
-        iSpanProjectEntities6 isp4 = new iSpanProjectEntities6();
-
+        
         private void 上架_Load(object sender, EventArgs e)
         {
 
-           
+           //做好選單中的選項
             var m = from b in isp4.SmallTypes
                     select b;
 
@@ -57,36 +59,9 @@ namespace seller
 
             renew();
 
-            foreach (Control items in Controls)
-            {
-                if (items.GetType().Name == "PictureBox")
-                {
-                    items.AllowDrop = true;//允許拖曳
-                    items.DragDrop += Items_DragDrop;
-                    items.DragEnter += Items_DragEnter;
-                }
-            }
-            //pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;//PictureBox 顯示模式
+          
         }
 
-        private void Items_DragEnter(object sender, DragEventArgs e)
-        {
-            e.Effect = DragDropEffects.All;
-            //throw new NotImplementedException();
-        }
-
-        private void Items_DragDrop(object sender, DragEventArgs e)
-        {
-            string filename = (e.Data.GetData(DataFormats.FileDrop) as string[])[0];
-
-            //if(pictureBox1.Image != null)
-            //{
-            //    pictureBox1.Image = null;
-            //    GC.Collect();
-            //}
-            //pictureBox1.Image = Image.FromFile(filename);
-            //throw new NotImplementedException();
-        }
         
         void renew() {
 
@@ -99,17 +74,8 @@ namespace seller
                     where d.MemberID == memid
                     select d;
 
-            dataGridView1.DataSource = s.ToList();
+            dataGridView1.DataSource = s.ToList();  //抓特定賣家的販賣商品
 
-            //var t = from v in isp4.ProductDetails
-            //        select v;
-
-            //dataGridView2.DataSource = t.ToList();
-
-            //var w = from p in isp4.ProductPics
-            //        select p;
-
-           // dataGridView3.DataSource = w.ToList();
         }
 
         private void btn_product_Click(object sender, EventArgs e)
@@ -119,9 +85,9 @@ namespace seller
                 this.picb_product.Image = Image.FromFile(this.ofd_product.FileName);
             }
         }
-        public int product_id;
+        
    
-        private void refresh_Click(object sender, EventArgs e)
+        private void refresh_Click(object sender, EventArgs e)      //確定上架
         {
 
             Product pd = new Product();
@@ -215,23 +181,7 @@ namespace seller
             this.isp4.SaveChanges();
 
             renew();
-            #region
-            //var dell = (from d in isp.MemberAccount
-            //          where (d.RegionID == 1)
-            //          select d).FirstOrDefault();
-
-            //var delll = (from c in isp.RegionList
-            //             where (c.RegionID == 1)
-            //             select c
-            //            ).FirstOrDefault();
-
-
-            //isp.MemberAccount.Remove(dell);
-            //isp.RegionList.Remove(delll);
-
-
-            //this.isp.SaveChanges();
-            #endregion
+           
         }
 
         private void alter_Click(object sender, EventArgs e)
@@ -313,45 +263,33 @@ namespace seller
         }
 
     
-        private void count_Click(object sender, EventArgs e)
-        {
-
-        }
-      
-        private void search_clk(object sender, EventArgs e)     //要重新清空背景顏色
-        {
-            foreach(DataGridViewRow r in dataGridView1.Rows)
-            {
-                foreach(DataGridViewCell c in r.Cells)
-                {
-                    if (c.Value == null) continue;
-                    if (c.Value.ToString().ToUpper().Contains(txt_srch.Text.ToUpper()))
-                    {
-                        c.Style.BackColor = Color.Yellow;
-                    }
-                    if (c.Value.ToString().Contains(txt_srch.Text))
-                    {
-                        c.Style.BackColor = Color.Yellow;
-                    }
-                }
-            }
-        }
-
         List<商品細項> pd_detail = new List<商品細項>();        //暫存的商品規格
 
 
-        private void btn_remove_Click(object sender, EventArgs e)
+        private void btn_newformat_Click(object sender, EventArgs e)
         {
-            //var inde = ((UserControl1)UserControl).index;
-            //pd_detail.RemoveAt(1);
-            //this.flowLayoutPanel1.Controls.Remove(inde);
-            //flowLayoutPanel1.Controls.ind
-            Application.DoEvents();
-
-            //UserControl.
+            format();       //加入文字輸入到list中
+            show_type();
         }
-        
-        private void btn_show_format_Click(object sender, EventArgs e)
+
+        void format() {
+            商品細項 pd_dtail = new 商品細項();
+
+            pd_dtail.Style = txt_style.Text;
+            pd_dtail.Quantity = Convert.ToInt32(txt_quantity.Text);
+            pd_dtail.UnitPrice = Convert.ToDecimal(txt_unitprice.Text);
+
+
+            System.IO.MemoryStream ms = new System.IO.MemoryStream();
+            this.picb_format.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+            byte[] bytes = ms.GetBuffer();
+
+            pd_dtail.pic = bytes;
+
+
+            pd_detail.Add(pd_dtail);
+        }
+        void show_type()        //新增規格
         {
             this.flowLayoutPanel1.Controls.Clear();
             for (int i = 0; i < pd_detail.Count; i++)
@@ -361,70 +299,43 @@ namespace seller
                 detail.quantity = pd_detail[i].Quantity;
                 detail.unitprice = pd_detail[i].UnitPrice;
                 detail.picture = pd_detail[i].pic;
-
+                foreach (Control control in detail.Controls)
+                {
+                    if (control.GetType() == typeof(Button))
+                    {
+                        Button button = (Button)control;
+                        button.Click += Button_Click;
+                    }
+                }
                 this.flowLayoutPanel1.Controls.Add(detail);
 
                 Application.DoEvents();
             }
         }
 
-        private void btn_newformat_Click(object sender, EventArgs e)
+      
+
+        private void Button_Click(object sender, EventArgs e)
         {
-            //format();       //加入文字輸入到list中
-            商品細項 pd_dtail = new 商品細項();
-
-            pd_dtail.Style = txt_style.Text;
-            pd_dtail.Quantity = Convert.ToInt32(txt_quantity.Text);
-            pd_dtail.UnitPrice = Convert.ToDecimal(txt_unitprice.Text);
-           
-
-            System.IO.MemoryStream ms = new System.IO.MemoryStream();
-            this.picb_format.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-            byte[] bytes = ms.GetBuffer();
-
-            pd_dtail.pic = bytes;
-
-           
-            pd_detail.Add(pd_dtail);
-
-
+            Button button = (Button)sender;
+            int idx = this.flowLayoutPanel1.Controls.IndexOf(button.Parent);
+            pd_detail.RemoveAt(idx);
+            this.flowLayoutPanel1.Controls.Remove(button.Parent);
+          
         }
 
-        void format()
-        {
+       
 
-            商品細項 pd_dtail = new 商品細項();
-            
-            pd_dtail.Style = txt_style.Text;
-            pd_dtail.Quantity = Convert.ToInt32(txt_quantity.Text);
-            pd_dtail.UnitPrice = Convert.ToDecimal(txt_unitprice.Text);
-            
-            pd_detail.Add(pd_dtail);
-        }
-
-        //product圖
+       //product圖
         #region
         List<商品圖> pd_pic = new List<商品圖>();               //暫存的商品圖
 
-        private void btn_show_pic_Click(object sender, EventArgs e)
-        {
-            this.flowLayoutPanel2.Controls.Clear();
-            for(int i = 0; i < pd_pic.Count(); i++)
-            {
-                UserControl2 pict = new UserControl2();
-                pict.picture = pd_pic[i].picture;
-
-                this.flowLayoutPanel2.Controls.Add(pict);
-                
-                Application.DoEvents();
-            }
-        }
 
         private void btn_new_pic_Click(object sender, EventArgs e)
         {
             pic();
+            btn_showpic();
         }
-
         void pic()
         {
             商品圖 pdpic = new 商品圖();
@@ -437,6 +348,39 @@ namespace seller
 
             pd_pic.Add(pdpic);
         }
+       
+        void btn_showpic() {
+            this.flowLayoutPanel2.Controls.Clear();
+
+            for (int i = 0; i < pd_pic.Count(); i++)
+            {
+                UserControl2 pict = new UserControl2();
+                pict.picture = pd_pic[i].picture;
+
+                this.flowLayoutPanel2.Controls.Add(pict);
+
+                foreach (Control control in pict.Controls)
+                {
+                    if (control.GetType() == typeof(Button))
+                    {
+                        Button button = (Button)control;
+                        button.Click += Button_pic_Click;
+                    }
+                }
+
+                Application.DoEvents();
+            }
+        }
+
+        private void Button_pic_Click(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            int idx = this.flowLayoutPanel2.Controls.IndexOf(button.Parent);
+            pd_pic.RemoveAt(idx);
+            this.flowLayoutPanel2.Controls.Remove(button.Parent);
+        }
+
+
         #endregion
 
         private void picb_product_MouseUp(object sender, MouseEventArgs e)      //想做圖片可以托拉進去
@@ -468,29 +412,6 @@ namespace seller
         }
 
         private void splitContainer2_Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)          //想做統計
-        {
-            var q = (from a in isp4.Products
-                     group a by a.SmallTypeID into g
-                     select new { small = g.Key, cont = g.Count() }).OrderByDescending(b => b.small);
-
-            chart1.ChartAreas.Add("FirstChart");
-            chart1.Series.Add("Pie");
-
-            foreach (var j in q)
-            {
-                
-                chart1.Series[0].Points.AddXY(j.small, j.cont);
-                chart1.Series[0].IsValueShownAsLabel = true;
-                chart1.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            }
-        }
-
-        private void chart1_Click(object sender, EventArgs e)
         {
 
         }

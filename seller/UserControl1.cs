@@ -58,17 +58,17 @@ namespace seller
 
         }
 
-        public event EventHandler RemoveUserControl;
+        //public event EventHandler RemoveUserControl;
         private void btn_delete_detail_Click(object sender, EventArgs e)
         {
             //((上架)Form).
             //Application.Exit();
             //Window par = (Window)this.Parent;
             //par.clo
-
+            
             //RemoveUserControl(sender, e);
             //return;
-            this.Controls.Clear();
+            //this.Controls.Clear();
             //int index = flowLayoutPanel1.
         }
     }
